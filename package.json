@@ -1,0 +1,28 @@
+{
+  "name": "edu-desk",
+  "version": "1.0.0",
+  "description": "Educational platform for sharing and managing study materials",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "keywords": [
+    "education",
+    "platform",
+    "notes",
+    "pdf"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "form-data": "^4.0.5"
+  }
+}

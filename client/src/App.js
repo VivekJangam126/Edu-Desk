@@ -10,6 +10,7 @@ import Upload from './pages/Upload';
 import Notes from './pages/Notes';
 import NoteDetail from './pages/NoteDetail';
 import Profile from './pages/Profile';
+import ApiTest from './pages/ApiTest';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/notes" element={<Notes />} />
               <Route path="/notes/:id" element={<NoteDetail />} />
+              <Route path="/api-test" element={<ApiTest />} />
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />

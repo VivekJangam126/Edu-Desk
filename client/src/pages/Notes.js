@@ -81,9 +81,12 @@ const Notes = () => {
       }
 
       const response = await axios.get(`/api/notes?${params.toString()}`);
-      setNotes(response.data);
+      // Ensure response.data is an array
+      const notesData = Array.isArray(response.data) ? response.data : [];
+      setNotes(notesData);
     } catch (error) {
       console.error('Error fetching notes:', error);
+      setNotes([]); // Set empty array on error
     } finally {
       setLoading(false);
     }
@@ -93,9 +96,12 @@ const Notes = () => {
     setLoadingAcademics(prev => ({ ...prev, colleges: true }));
     try {
       const response = await axios.get('/api/academics/colleges');
-      setAcademicData(prev => ({ ...prev, colleges: response.data }));
+      // Ensure response.data is an array
+      const collegesData = Array.isArray(response.data) ? response.data : [];
+      setAcademicData(prev => ({ ...prev, colleges: collegesData }));
     } catch (error) {
       console.error('Error fetching colleges:', error);
+      setAcademicData(prev => ({ ...prev, colleges: [] }));
     } finally {
       setLoadingAcademics(prev => ({ ...prev, colleges: false }));
     }
@@ -105,9 +111,12 @@ const Notes = () => {
     setLoadingAcademics(prev => ({ ...prev, departments: true }));
     try {
       const response = await axios.get(`/api/academics/departments?collegeId=${collegeId}`);
-      setAcademicData(prev => ({ ...prev, departments: response.data }));
+      // Ensure response.data is an array
+      const departmentsData = Array.isArray(response.data) ? response.data : [];
+      setAcademicData(prev => ({ ...prev, departments: departmentsData }));
     } catch (error) {
       console.error('Error fetching departments:', error);
+      setAcademicData(prev => ({ ...prev, departments: [] }));
     } finally {
       setLoadingAcademics(prev => ({ ...prev, departments: false }));
     }
@@ -117,9 +126,12 @@ const Notes = () => {
     setLoadingAcademics(prev => ({ ...prev, subjects: true }));
     try {
       const response = await axios.get(`/api/academics/subjects?departmentId=${departmentId}`);
-      setAcademicData(prev => ({ ...prev, subjects: response.data }));
+      // Ensure response.data is an array
+      const subjectsData = Array.isArray(response.data) ? response.data : [];
+      setAcademicData(prev => ({ ...prev, subjects: subjectsData }));
     } catch (error) {
       console.error('Error fetching subjects:', error);
+      setAcademicData(prev => ({ ...prev, subjects: [] }));
     } finally {
       setLoadingAcademics(prev => ({ ...prev, subjects: false }));
     }

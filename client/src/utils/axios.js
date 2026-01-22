@@ -4,7 +4,7 @@ import API_BASE_URL from '../config/api';
 // Create axios instance with base configuration
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000, // Increased timeout for slower connections
   headers: {
     'Content-Type': 'application/json',
   },
@@ -36,5 +36,9 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// Configure default axios to use the same base URL
+axios.defaults.baseURL = API_BASE_URL;
+axios.defaults.timeout = 30000;
 
 export default axiosInstance;

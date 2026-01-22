@@ -52,10 +52,13 @@ const Register = () => {
     setLoadingColleges(true);
     try {
       const response = await axios.get('/api/academics/colleges');
-      setColleges(response.data);
+      // Ensure response.data is an array
+      const collegesData = Array.isArray(response.data) ? response.data : [];
+      setColleges(collegesData);
     } catch (error) {
       console.error('Error fetching colleges:', error);
       setError('Failed to load colleges. Please refresh the page.');
+      setColleges([]); // Set empty array on error
     } finally {
       setLoadingColleges(false);
     }
@@ -65,10 +68,13 @@ const Register = () => {
     setLoadingDepartments(true);
     try {
       const response = await axios.get(`/api/academics/departments?collegeId=${collegeId}`);
-      setDepartments(response.data);
+      // Ensure response.data is an array
+      const departmentsData = Array.isArray(response.data) ? response.data : [];
+      setDepartments(departmentsData);
     } catch (error) {
       console.error('Error fetching departments:', error);
       setError('Failed to load departments. Please try again.');
+      setDepartments([]); // Set empty array on error
     } finally {
       setLoadingDepartments(false);
     }
